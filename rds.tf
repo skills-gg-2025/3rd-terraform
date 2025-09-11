@@ -8,6 +8,26 @@ resource "aws_db_subnet_group" "apdev_db_subnet_group" {
   }
 }
 
+# DB Parameter Group
+resource "aws_db_parameter_group" "apdev_db_parameter_group" {
+  name   = "apdev-db-parameter-group"
+  family = "mysql8.0"
+
+  parameter {
+    name  = "max_connections"
+    value = "100000"
+  }
+
+  parameter {
+    name  = "max_user_connections"
+    value = "100000"
+  }
+
+  tags = {
+    Name = "apdev-db-parameter-group"
+  }
+}
+
 # Security Group for RDS
 resource "aws_security_group" "apdev_rds_sg" {
   name        = "apdev-rds-sg"
@@ -52,6 +72,7 @@ resource "aws_db_instance" "apdev_rds_instance" {
   multi_az               = true
   db_subnet_group_name   = aws_db_subnet_group.apdev_db_subnet_group.name
   vpc_security_group_ids = [aws_security_group.apdev_rds_sg.id]
+  parameter_group_name   = aws_db_parameter_group.apdev_db_parameter_group.name
   
   backup_retention_period = 7
   backup_window          = "03:00-04:00"
