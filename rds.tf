@@ -56,13 +56,13 @@ resource "aws_security_group" "apdev_rds_sg" {
 # RDS Instance
 resource "aws_db_instance" "apdev_rds_instance" {
   identifier     = "apdev-rds-instance"
-  engine         = "mysql"
-  engine_version = "8.0"
-  instance_class = "db.t3.micro"
+  engine         = var.db_engine
+  engine_version = var.db_engine_version
+  instance_class = var.db_instance_type
   
   allocated_storage     = 20
   max_allocated_storage = 100
-  storage_type          = "gp3"
+  storage_type          = var.db_storage_type
   storage_encrypted     = true
   
   db_name  = "dev"
@@ -80,6 +80,9 @@ resource "aws_db_instance" "apdev_rds_instance" {
   
   skip_final_snapshot = true
   deletion_protection = false
+  
+  # Enable DB logs
+  enabled_cloudwatch_logs_exports = ["error", "general", "slowquery"]
 
   tags = {
     Name = "apdev-rds-instance"

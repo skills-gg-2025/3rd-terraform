@@ -66,7 +66,7 @@ resource "aws_iam_instance_profile" "apdev_ecs_instance_profile" {
 resource "aws_launch_template" "apdev_ecs_launch_template" {
   name_prefix   = "apdev-ecs-"
   image_id      = data.aws_ami.amazon_linux_2023.id
-  instance_type = "t3.medium"
+  instance_type = var.ecs_instance_type
 
   vpc_security_group_ids = [aws_security_group.apdev_ecs_sg.id]
 
@@ -92,9 +92,9 @@ resource "aws_launch_template" "apdev_ecs_launch_template" {
 resource "aws_autoscaling_group" "apdev_ecs_asg" {
   name                = "apdev-ecs-asg"
   vpc_zone_identifier = [aws_subnet.apdev_private_subnet_a.id, aws_subnet.apdev_private_subnet_b.id]
-  min_size            = 2
+  min_size            = 3
   max_size            = 6
-  desired_capacity    = 2
+  desired_capacity    = 3
   protect_from_scale_in = true
 
   launch_template {
