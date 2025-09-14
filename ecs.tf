@@ -62,6 +62,29 @@ resource "aws_iam_instance_profile" "apdev_ecs_instance_profile" {
   role = aws_iam_role.apdev_ecs_instance_role.name
 }
 
+# IAM Role for Product Task
+resource "aws_iam_role" "product_task_role" {
+  name = "product-task-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "ecs-tasks.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "product_task_role_dynamodb" {
+  role       = aws_iam_role.product_task_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+}
+
 # Launch Template for ECS
 resource "aws_launch_template" "apdev_ecs_launch_template" {
   name_prefix   = "apdev-ecs-"
