@@ -10,18 +10,6 @@ variable "db_instance_type" {
   type        = string
 }
 
-# DB Engine Variable
-variable "db_engine" {
-  description = "Database engine"
-  type        = string
-}
-
-# DB Engine Version Variable
-variable "db_engine_version" {
-  description = "Database engine version"
-  type        = string
-}
-
 # DB Storage Type Variable
 variable "db_storage_type" {
   description = "Storage type for RDS database"

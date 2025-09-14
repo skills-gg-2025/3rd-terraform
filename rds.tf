@@ -56,8 +56,8 @@ resource "aws_security_group" "apdev_rds_sg" {
 # RDS Instance
 resource "aws_db_instance" "apdev_rds_instance" {
   identifier     = "apdev-rds-instance"
-  engine         = var.db_engine
-  engine_version = var.db_engine_version
+  engine         = "mysql"
+  engine_version = "8.0"
   instance_class = var.db_instance_type
   
   allocated_storage     = 20
