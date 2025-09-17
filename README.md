@@ -72,7 +72,7 @@ CREATE INDEX user_email ON user (email);
 - `Container Insights` 활성화
 - t3.medium `2,048 단위(2vCPU), 3,827MiB(3.737GB)`, t3 small 
 - user `0.7 1.4` product `0.5 1.0` stress `0.6 1.2 `
-- 상태확인 : `CMD-SHELL, curl -f http://localhost:8080/healthcheck || exit 1`
+- 상태확인 : `CMD-SHELL, curl -f http://localhost:8080/healthcheck || exit 1` <- 상황에 따라 빼도됨
 
 ## Cloudfront
 - user 캐시 정책 : `CachingDisabled,` `All viewer`
