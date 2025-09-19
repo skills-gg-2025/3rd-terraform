@@ -76,7 +76,7 @@ CREATE INDEX user_email ON user (email);
 ## Cloudfront
 - user 캐시 정책 : `CachingDisabled,` `All viewer`
 - product 캐시 정책 : `id만 허용만 정책`, `All viewer`
-- stress 캐시 정책 : `All viewer`
+- stress 캐시 정책 : `CachingDisabled,` `All viewer`
 ## WAF
 - URI path : `/v1/user`
 - HTTP method : `POST`
