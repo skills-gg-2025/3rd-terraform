@@ -60,8 +60,8 @@ resource "aws_db_instance" "apdev_rds_instance" {
   engine_version = "8.0"
   instance_class = var.db_instance_type
   
-  allocated_storage     = 100
-  max_allocated_storage = 200
+  allocated_storage     = 200
+  max_allocated_storage = 300
   storage_type          = var.db_storage_type
   storage_encrypted     = true
   
