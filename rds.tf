@@ -15,12 +15,12 @@ resource "aws_db_parameter_group" "apdev_db_parameter_group" {
 
   parameter {
     name  = "max_connections"
-    value = "100000"
+    value = "10000"
   }
 
   parameter {
     name  = "max_user_connections"
-    value = "100000"
+    value = "10000"
   }
 
   tags = {
