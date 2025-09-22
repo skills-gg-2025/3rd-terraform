@@ -115,9 +115,9 @@ resource "aws_launch_template" "apdev_ecs_launch_template" {
 resource "aws_autoscaling_group" "apdev_ecs_asg" {
   name                = "apdev-ecs-asg"
   vpc_zone_identifier = [aws_subnet.apdev_private_subnet_a.id, aws_subnet.apdev_private_subnet_b.id]
-  min_size            = 3
-  max_size            = 6
-  desired_capacity    = 3
+  min_size            = 2
+  max_size            = 4
+  desired_capacity    = 2
   protect_from_scale_in = true
 
   launch_template {
